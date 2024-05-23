@@ -1,7 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import authRoutes from "./routes/authRoute.js"
-import userRoutes from "./routes/userRoute.js"
+import userRoute from "./routes/userRoute.js"
+import notificationRoute from "./routes/notificationRoute.js"
 
 import connectMongoDB from "./db/connectMongoDB.js";
 import cookieParser from "cookie-parser";
@@ -21,8 +22,9 @@ app.use(express.urlencoded({ extended: true })); //to parse form data
 
 app.use(cookieParser());
 app.use("/api/auth", authRoutes);
-app.use("/api/users", userRoutes);
+app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute)
+app.use("/api/notification", notificationRoute)
 
 
 
