@@ -2,9 +2,11 @@ import express from "express";
 import dotenv from "dotenv";
 import authRoutes from "./routes/authRoute.js"
 import userRoutes from "./routes/userRoutes.js"
+
 import connectMongoDB from "./db/connectMongoDB.js";
 import cookieParser from "cookie-parser";
 import { v2 as cloudinary } from "cloudinary"
+import  postRoute from "./routes/postRoute.js";
 
 dotenv.config()
 cloudinary.config({
@@ -20,6 +22,7 @@ app.use(express.urlencoded({ extended: true })); //to parse form data
 app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/posts", postRoute)
 
 
 
