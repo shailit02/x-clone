@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev":"nodemon backend/server.js",
-    "start":"node backend/server.js"
+    "dev": "nodemon backend/server.js",
+    "start": "node backend/server.js"
   },
   "author": "",
-  "type":"module",
+  "type": "module",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
