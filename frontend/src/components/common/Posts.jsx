@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import PostSkeleton from "../skeletons/PostSkeleton";
 import { useQuery } from "@tanstack/react-query"
 
-const Posts = ({ feedType }) => {
+const Posts = ({ feedType, username, userId }) => {
 
   const getPostEndpoint = () => {
     switch (feedType) {
@@ -47,7 +47,7 @@ const Posts = ({ feedType }) => {
 
   useEffect(() => {
     refetch();
-  }, [feedType, refetch]);
+  }, [feedType, refetch, username]);
 
   return (
     <>
