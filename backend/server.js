@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import path from "path"
 import authRoutes from "./routes/authRoute.js"
 import userRoute from "./routes/userRoute.js"
 import notificationRoute from "./routes/notificationRoute.js"
@@ -17,6 +18,7 @@ cloudinary.config({
 });
 const app = express();
 const PORT = process.env.PORT || 5000
+const __dirname = path.resolve()
 app.use(express.json({ limit: "5mb" })) //to parse req.body 
 //limit should'nt be too high to prevent DOS
 app.use(express.urlencoded({ extended: true })); //to parse form data
@@ -27,6 +29,14 @@ app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute)
 app.use("/api/notification", notificationRoute)
 
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/frontend/dist")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+  });
+}
 
 
 
